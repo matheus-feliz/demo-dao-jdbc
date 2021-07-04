@@ -12,6 +12,7 @@ import java.util.Map;
 
 import db.DB;
 import db.DbException;
+import db.DbIntegrityException;
 import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
@@ -102,7 +103,7 @@ public class SellerDaoJDBC implements SellerDao {
 			int rows = st.executeUpdate();
 			
 			if(rows == 0) {
-				throw new DbException("does not exist");
+				throw new DbIntegrityException("Does exist");
 			}
 		}catch(SQLException e) {
 			throw new DbException(e.getMessage());
